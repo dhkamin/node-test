@@ -44,8 +44,8 @@ router.post('/:id/:pos/update_Question',(req,res)=>{
     console.log(req.body.question);
     db.collection('users').update(
       { "_id":ObjectID(req.params.id)},
-      { $set: { ["questions."+req.params.pos+".question"] : req.body.title,
-                ["questions."+req.params.pos+".reponse"] : req.body.description,
+      { $set: { ["questions."+req.params.pos+".question"] : req.body.question,
+                ["questions."+req.params.pos+".reponse"] : req.body.reponse,
                }}
       ,(error,resultat)=>{
            if (resultat){
@@ -61,13 +61,13 @@ router.post('/:id/:pos/update_Question',(req,res)=>{
 
 
 // Suppression de 'Tquestion'   
-  router.get('/:id/:param/deleteQuestion',(req,res)=>{
+  router.get('/:id/:question/deleteQuestion',(req,res)=>{
     connection((db)=>{
       db.collection('users').findOne({"_id": ObjectID(req.params.id) },(err,result)=>{
         if(err||!result) {res.send({message:"Error"})}
         else{ 
             db.collection('users').update({'_id': ObjectID(req.params.id)}, 
-            { $pull: { "questions" : { param: req.params.param } } },(error,resultat)=>{
+            { $pull: { "questions" : { question: req.params.question } } },(error,resultat)=>{
            if (resultat){
             console.log("Supression avec succes");
             res.send({message:"Supression avec succes"});
