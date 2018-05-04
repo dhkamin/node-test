@@ -1,0 +1,23 @@
+<div class="basic-container" [formGroup]="myGroup">
+
+<mat-card>
+    <mat-card-header>
+      <mat-card-title><h1>Register</h1></mat-card-title>
+    </mat-card-header>
+    <div class="inputform">
+
+      <mat-input-container floatPlaceholder="auto">
+        <input matInput formControlName="email" type="text" required placeholder="email">
+      </mat-input-container>
+      <mat-input-container floatPlaceholder="auto">
+          <input matInput formControlName="password" type="password" required placeholder="password">
+        </mat-input-container>
+
+        <mat-input-container floatPlaceholder="auto">
+            <input matInput formControlName="password" type="password" required placeholder="Confirm">
+          </mat-input-container>
+      <button mat-button (click)="onClickRegister()">Register</button>
+      <button mat-button routerLink="/login">You already have an account ?</button>
+    </div>
+  </mat-card>
+</div>

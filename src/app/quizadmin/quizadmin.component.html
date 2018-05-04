@@ -1,0 +1,22 @@
+<div class="basic-container" [formGroup]="myGroup">
+
+  <mat-card>
+      <mat-card-header>
+        <mat-card-title><h1>Ajouté Question pour  le Quiz</h1></mat-card-title>
+      </mat-card-header>
+      <div class="inputform">
+  
+        <mat-input-container floatPlaceholder="auto">
+          <input matInput formControlName="question" type="text" required placeholder="Question">
+        </mat-input-container>
+        <mat-input-container floatPlaceholder="auto">
+            <input matInput formControlName="reponse" type="text" required placeholder="reponse">
+          </mat-input-container>
+  
+       
+        <button mat-button (click)="addQuest()">ajouté question</button>
+        <button mat-button routerLink="/home">Home</button>
+      </div>
+    </mat-card>
+  </div>
+  
