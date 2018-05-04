@@ -4,9 +4,8 @@ import { AuthHttp, AuthConfig,JwtHelper } from 'angular2-jwt';
 import { Http,Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs';
-
 @Injectable()
-export class ListtodoService {
+export class QuizService {
   headers: Headers;
 
   jwtHelper: JwtHelper = new JwtHelper();
@@ -26,9 +25,9 @@ export class ListtodoService {
     return  this.jwtHelper.decodeToken(token).id;
   }
   //  consomation de l'api ajout  task/todo   list
-  addTodo(todo){
-    console.log("cmtodoiii ttodo"+todo);
-    return this.http.post('http://localhost:3000/task/addTask', todo)
+  addQuestion(question){
+    console.log("cmtodoiii ttodo"+question);
+    return this.http.post('http://localhost:3000/quiz/addQuestion', question)
     .map((res) => {
       
       if (res.status === 200) { 
@@ -39,8 +38,8 @@ export class ListtodoService {
   
   }
   // consomation  de l'api  get  all  task/todo  list  image
-  getTodos(iduser){
-    return this.http.get('http://localhost:3000/task/'+iduser+'/getTasks')
+  getQuestions(iduser){
+    return this.http.get('http://localhost:3000/quiz/'+iduser+'/getQuestions')
     .map((res)=>{
       if(res.status===200)
       return res.json()
@@ -53,34 +52,11 @@ export class ListtodoService {
 
   }
 
-  /// consomation de l'api  ajout  image  
 
-uploadAnswer(formData:any){  
- 
- return this.http.post('http://localhost:3000/task/Add_img_task',formData)
- .map((res) => {   
-   console.log(res);
-    return res.json().message;
-  });
-  }
-//consomation de l'api  delete image
-  deleteImage(dataImage, iduser){
-    return this.http.get('http://localhost:3000/task/'+iduser+'/'+dataImage.title+'/'+dataImage.name+'/deleteTaskImage')
-    .map((res)=>{
-      if(res.status===200)
-      return res.json()
-      else {
-        console.log(res.json().message);
-        return res.json().message;
-      }
-      
-    })
-
-  }
   // consomation de l'api delete  task/todo  list
-  deleteTaskAndList(dataTaskList ,iduser){
+  deleteQuestion(dataTaskList ,iduser){
     
-    return this.http.get('http://localhost:3000/task/'+iduser+'/'+dataTaskList.param+'/deleteTask')
+    return this.http.get('http://localhost:3000/quiz/'+iduser+'/'+dataTaskList.param+'/deleteQuestion')
     .map((res)=>{
       if(res.status===200)
       return res.json()
@@ -92,8 +68,8 @@ uploadAnswer(formData:any){
     })
   }
   //consomation  de  l'api  update any task/todo  
-  updateAnyTask(data,iduser){
-   return this.http.post('http://localhost:3000/task/'+iduser+'/'+data.position+'/update_task',data)
+  updateQuestion(data,iduser){
+   return this.http.post('http://localhost:3000/quiz/'+iduser+'/'+data.position+'/update_Question',data)
    .map((res) => {   
    console.log(res);
     return res.json().message;

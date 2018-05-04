@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { FormBuilder, FormGroup ,Validators, FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
-import { ListtodoService } from '../listtodo.service';
+
 import { Observable } from 'rxjs';
 
 @Component({

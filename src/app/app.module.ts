@@ -16,8 +16,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AuthHttp, AuthConfig,JwtHelper } from 'angular2-jwt';
-import { ListtodoService } from './listtodo.service';
+
 import { QuizadminComponent } from './quizadmin/quizadmin.component';
+import { QuizService } from './quiz.service';
+
 
 
 
@@ -45,7 +47,7 @@ import { QuizadminComponent } from './quizadmin/quizadmin.component';
  
   ],
   entryComponents: [ ],
-  providers: [LoginGuardGuard, AuthService,ListtodoService],
+  providers: [LoginGuardGuard, AuthService,QuizService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
