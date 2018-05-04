@@ -11,6 +11,9 @@ const connection = (closure) =>{
     })
   }
   router.post('/addQuestion',(req,res)=>{
+    console.log(req.body.questions);
+    console.log(req.body.id);
+
    
     connection((db)=>{
       db.collection('users').findOne({"_id":ObjectID(req.body.id) },(err,result)=>{
@@ -21,7 +24,7 @@ const connection = (closure) =>{
             db.collection('users').update(
                { "_id":ObjectID(req.body.id)},
               
-                {$push : { questions: { $each: [req.body.question] } }
+                {$push : { questions: { $each: [req.body.questions] } }
                }
             );
             res.send({message:"Done"});
@@ -34,17 +37,11 @@ const connection = (closure) =>{
 
 
 // update question
-router.post('/:id/:pos/update_question',(req,res)=>{
+router.post('/:id/:pos/update_Question',(req,res)=>{
   connection((db)=>{
     console.log(req.params.id);
     console.log(req.params.pos);
-    console.log(req.body.title);
-    let tid = { ["tasks."+req.params.pos+".title"] : req.body.title };
-    let tid2 = { ["tasks."+req.params.pos+".description"] : req.body.description };
-    let tid3 = { ["tasks."+req.params.pos+".done"] : req.body.done };
-    
-    let query = { "_id": ObjectID(req.params.id) };
-
+    console.log(req.body.question);
     db.collection('users').update(
       { "_id":ObjectID(req.params.id)},
       { $set: { ["questions."+req.params.pos+".question"] : req.body.title,
@@ -88,13 +85,14 @@ router.post('/:id/:pos/update_question',(req,res)=>{
  
 
 
-// Return Tous les tasks de l' ID 
-router.get('/:id/getquestion',(req,res)=>{  
+// Return Tous les questions de l' ID 
+router.get('/:id/getQuestion',(req,res)=>{  
+  console.log(req.params.id);
     connection((db)=>{
       db.collection('users').findOne({"_id":ObjectID(req.params.id) },(err,result)=>{
         if(err||!result) {res.send({message:"Error"})}
         else{
-          const resultat = result.tasks;
+          const resultat = result.questions;
           res.send(resultat);
 }
       })

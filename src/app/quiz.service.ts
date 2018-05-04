@@ -25,9 +25,13 @@ export class QuizService {
     return  this.jwtHelper.decodeToken(token).id;
   }
   //  consomation de l'api ajout  task/todo   list
-  addQuestion(question){
-    console.log("cmtodoiii ttodo"+question);
-    return this.http.post('http://localhost:3000/quiz/addQuestion', question)
+  addQuestion(question ,id){
+    let  q ={
+      questions : question,
+       id : id
+    }
+    console.log("cmtodoiii ttodo"+q);
+    return this.http.post('http://localhost:3000/quiz/addQuestion', q)
     .map((res) => {
       
       if (res.status === 200) { 
@@ -39,7 +43,8 @@ export class QuizService {
   }
   // consomation  de l'api  get  all  task/todo  list  image
   getQuestions(iduser){
-    return this.http.get('http://localhost:3000/quiz/'+iduser+'/getQuestions')
+    console.log(iduser);
+    return this.http.get('http://localhost:3000/quiz/'+iduser+'/getQuestion')
     .map((res)=>{
       if(res.status===200)
       return res.json()

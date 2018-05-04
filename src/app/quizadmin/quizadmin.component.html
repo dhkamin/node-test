@@ -15,8 +15,27 @@
   
        
         <button mat-button (click)="addQuest()">ajouté question</button>
-        <button mat-button routerLink="/home">Home</button>
+        <button mat-button routerLink="">Home</button>
       </div>
     </mat-card>
+
+    <mat-table #table [dataSource]="dataquiz">
+    
+      <ng-container matColumnDef="question">
+        <mat-header-cell *matHeaderCellDef> question </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.question}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="reponse">
+        <mat-header-cell *matHeaderCellDef> reponse </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.reponse}} </mat-cell>
+      </ng-container>
+     
+  
+   
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"  ></mat-row>
+    </mat-table>
   </div>
   
